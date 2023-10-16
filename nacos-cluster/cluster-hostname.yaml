@@ -1,5 +1,21 @@
 version: "3.8"
 services:
+  nginx:
+    image: nginx
+    container_name: nacos_nginx
+    ports:
+      - "9001:80"
+      - "1111:1111"
+      - "2111:2111"
+    volumes:
+      - ./nginx/conf/nginx.conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf/conf.d:/etc/nginx/conf.d
+      - ./nginx/html:/usr/share/nginx/html
+    depends_on:
+      - nacos1
+      - nacos2
+      - nacos3
+
   nacos1:
     hostname: nacos1
     container_name: nacos1

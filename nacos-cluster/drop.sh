@@ -1,0 +1,1 @@
+docker-compose -f cluster-hostname.yaml down
