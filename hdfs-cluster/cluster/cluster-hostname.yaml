@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  hadoop1:
+    image: hadoop-3.3.6-lin
+    container_name: hadoop1
+    ports:
+      - "50070:50070"
+      - "8088:8088"
+    volumes:
+      - ./hadoop-config/core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./hadoop-config/hdfs-site.xml:/usr/local/hadoop/etc/hadoop/hdfs-site.xml
+      - ./hadoop-config/mapred-site.xml:/usr/local/hadoop/etc/hadoop/mapred-site.xml
+      - ./hadoop-config/yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
+      - ./hadoop-config/hadoop-env.sh:/usr/local/hadoop/etc/hadoop/hadoop-env.sh
+      - ./hadoop-config/start-dfs.sh:/usr/local/hadoop/sbin/start-dfs.sh
+      - ./hadoop-config/stop-dfs.sh:/usr/local/hadoop/sbin/stop-dfs.sh
+      - ./hadoop-config/start-yarn.sh:/usr/local/hadoop/sbin/start-yarn.sh
+      - ./hadoop-config/stop-yarn.sh:/usr/local/hadoop/sbin/stop-yarn.sh
+      - ./hadoop-config/workers:/usr/local/hadoop/etc/hadoop/workers
+    networks:
+      hadoop-bridge:
+        ipv4_address: 172.16.238.10
+  
+  hadoop2:
+    image: hadoop-3.3.6-lin
+    container_name: hadoop2
+    ports:
+      - "50071:50070"
+      - "8089:8088"
+    volumes:
+      - ./hadoop-config/core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./hadoop-config/hdfs-site.xml:/usr/local/hadoop/etc/hadoop/hdfs-site.xml
+      - ./hadoop-config/mapred-site.xml:/usr/local/hadoop/etc/hadoop/mapred-site.xml
+      - ./hadoop-config/yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
+      - ./hadoop-config/hadoop-env.sh:/usr/local/hadoop/etc/hadoop/hadoop-env.sh
+      - ./hadoop-config/start-dfs.sh:/usr/local/hadoop/sbin/start-dfs.sh
+      - ./hadoop-config/stop-dfs.sh:/usr/local/hadoop/sbin/stop-dfs.sh
+      - ./hadoop-config/start-yarn.sh:/usr/local/hadoop/sbin/start-yarn.sh
+      - ./hadoop-config/stop-yarn.sh:/usr/local/hadoop/sbin/stop-yarn.sh
+    networks:
+      hadoop-bridge:
+        ipv4_address: 172.16.238.11
+
+  hadoop3:
+    image: hadoop-3.3.6-lin
+    container_name: hadoop3
+    ports:
+      - "50072:50070"
+      - "8090:8088"
+    volumes:
+      - ./hadoop-config/core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
+      - ./hadoop-config/hdfs-site.xml:/usr/local/hadoop/etc/hadoop/hdfs-site.xml
+      - ./hadoop-config/mapred-site.xml:/usr/local/hadoop/etc/hadoop/mapred-site.xml
+      - ./hadoop-config/yarn-site.xml:/usr/local/hadoop/etc/hadoop/yarn-site.xml
+      - ./hadoop-config/hadoop-env.sh:/usr/local/hadoop/etc/hadoop/hadoop-env.sh
+      - ./hadoop-config/start-dfs.sh:/usr/local/hadoop/sbin/start-dfs.sh
+      - ./hadoop-config/stop-dfs.sh:/usr/local/hadoop/sbin/stop-dfs.sh
+      - ./hadoop-config/start-yarn.sh:/usr/local/hadoop/sbin/start-yarn.sh
+      - ./hadoop-config/stop-yarn.sh:/usr/local/hadoop/sbin/stop-yarn.sh
+    networks:
+      hadoop-bridge:
+        ipv4_address: 172.16.238.12
+
+networks:
+  hadoop-bridge:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
