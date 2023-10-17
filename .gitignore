@@ -1,0 +1,5 @@
+*logs
+mysql*
+nginx*
+jdk*
+*.tar.gz
