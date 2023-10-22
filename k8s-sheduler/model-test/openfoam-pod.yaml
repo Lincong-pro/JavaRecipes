@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: openfoam-pod
+spec:
+  containers:
+    - name: openfoam-container
+      image: openfoam/openfoam11-paraview510
+      command: ["/bin/bash", "-c", "cd /opt/openfoam11/tutorials/fluid/hotRoom && source /opt/openfoam11/etc/bashrc && ./Allrun"]
+      securityContext:
+        privileged: true
+        capabilities:
+          add: ["SYS_ADMIN"]
+        runAsUser: 0

@@ -4,7 +4,7 @@ services:
     image: hadoop-3.3.6-lin
     container_name: hadoop1
     ports:
-      - "50070:50070"
+      - "9870:9870"
       - "8088:8088"
     volumes:
       - ./hadoop-config/core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
@@ -24,9 +24,6 @@ services:
   hadoop2:
     image: hadoop-3.3.6-lin
     container_name: hadoop2
-    ports:
-      - "50071:50070"
-      - "8089:8088"
     volumes:
       - ./hadoop-config/core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
       - ./hadoop-config/hdfs-site.xml:/usr/local/hadoop/etc/hadoop/hdfs-site.xml
@@ -44,9 +41,6 @@ services:
   hadoop3:
     image: hadoop-3.3.6-lin
     container_name: hadoop3
-    ports:
-      - "50072:50070"
-      - "8090:8088"
     volumes:
       - ./hadoop-config/core-site.xml:/usr/local/hadoop/etc/hadoop/core-site.xml
       - ./hadoop-config/hdfs-site.xml:/usr/local/hadoop/etc/hadoop/hdfs-site.xml

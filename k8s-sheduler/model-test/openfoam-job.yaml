@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: openfoam-simulator
+spec:
+  template:
+    spec:
+      containers:
+      - name: openfoam-container
+        image: openfoam/openfoam11-paraview510
+        command:  ["/bin/bash", "-c", "cd /opt/openfoam11/tutorials/XiFluid/moriyoshiHomogeneous && source /opt/openfoam11/etc/bashrc && ./Allrun"]
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["SYS_ADMIN"]
+          runAsUser: 0
+      restartPolicy: Never
+  backoffLimit: 2
