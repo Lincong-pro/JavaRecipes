@@ -3,3 +3,4 @@ mysql*
 nginx*
 jdk*
 *.tar.gz
+*.kubeconfig
